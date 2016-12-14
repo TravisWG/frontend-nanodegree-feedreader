@@ -31,16 +31,29 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        it('has URL', function(){
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe('');
+            });
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('has name', function(){
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe('');
+            });
+        });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe ('The menu', function() {
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -48,11 +61,32 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+        it('is hidden', function() {
+            expect($('body').attr('class')).toBe('menu-hidden');
+        });
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+        //simulates clicking on the menu icon
+        function onMenuClick () {
+            $('body').toggleClass('menu-hidden');
+        }
+
+        it('will hide/unhide on menu icon click', function() {
+            //click to unhide
+            onMenuClick()
+            expect($('body').attr('class')).toBe('');
+
+            //click to hide
+            onMenuClick()
+            expect($('body').attr('class')).toBe('menu-hidden');
+
+        });
+
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -69,4 +103,5 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    });
 }());
