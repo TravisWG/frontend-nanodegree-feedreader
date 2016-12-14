@@ -32,7 +32,7 @@ $(function() {
 
         it('is hidden', function() {
             var initialBodyClass = $('body').attr('class');
-            expect(initialBodyClass).toBe('menu-hidden');
+            expect(initialBodyClass).hasClass('menu-hidden').toBeTruthy();
         });
 
         //simulates clicking on the menu icon
@@ -76,12 +76,11 @@ $(function() {
         it('should have different content', function(done){
             var initialFeedText = $('.feed').text();
             var newFeedText;
-            console.log(initialFeedText);
             loadFeed(1, function(){  //changes feed content
                 newFeedText = $('.feed').text();
+                expect(newFeedText).not.toBe(initialFeedText);
+                done();
             });
-            expect(newFeedText).not.toBe(initialFeedText);
-            done();
         });
     });
 
