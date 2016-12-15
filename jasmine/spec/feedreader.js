@@ -31,25 +31,25 @@ $(function() {
     describe('The menu', function() {
 
         it('is hidden', function() {
-            var initialBodyClass = $('body').attr('class');
-            expect(initialBodyClass).hasClass('menu-hidden').toBeTruthy();
+            var hasMenusHiddenClass = $('body').hasClass('menu-hidden');
+            expect(hasMenusHiddenClass).toBeTruthy();
         });
 
         //simulates clicking on the menu icon
         function onMenuClick () {
-            $('body').toggleClass('menu-hidden');
+            $(".menu-icon-link").trigger("click");
         }
 
         it('will hide/unhide on menu icon click', function() {
             //click to unhide
             onMenuClick();
-            var bodyClassAfterClick = $('body').attr('class'); //must keep redefining this as the toggle is used, lesson learned...
-            expect(bodyClassAfterClick).toBe('');
+            var hasMenuHiddenClassAfterClick = $('body').hasClass('menu-hidden'); //must keep redefining this as the toggle is used, lesson learned...
+            expect(hasMenuHiddenClassAfterClick).toBeFalsy();
 
             //click to hide
             onMenuClick();
-            var bodyClassAfterSecondClick = $('body').attr('class'); //must keep redefining this as the toggle is used, lesson learned...
-            expect(bodyClassAfterSecondClick).toBe('menu-hidden');
+            var hasMenuHiddenClassAfterSecondClick = $('body').hasClass('menu-hidden'); //must keep redefining this as the toggle is used, lesson learned...
+            expect(hasMenuHiddenClassAfterSecondClick).toBeTruthy();
 
         });
     });
